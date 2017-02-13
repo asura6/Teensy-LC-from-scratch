@@ -12,7 +12,7 @@ _LED_loop: @@ Turn on and off the LED
         b       _LED_loop @@Never leave this loop
 
 
-_Delay: @@ Wait *at least* a clock cyclea 
+_Delay: @@ Wait *at least* a clock cycle 
         nop
         mov     pc, lr @@Return to caller
 

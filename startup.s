@@ -28,24 +28,7 @@ _start:
         ldr     r0, =0x40048100 @@SIM_COPC = 4004_8100 (p232)
         movs    r1, #0
         str     r1, [r0] 
-
-        /* Here clock signals are started on all ports and pin C5 which has an
-         * included LED on the Teensy-LC is configured as an output */ 
-        @@ Activate clock signals on port A-E
-        ldr     r0, =0x40048038 @@SIM_SCGC5 = 4004_8038 (p208)
-        ldr     r1, =0x3f82
-        str     r1, [r0] 
-
-        @@ Change pin C5 as GPIO in the pin control register
-        ldr     r0, =0x4004B014 @ PORCC_PCR5 = 4004_B014 (p199)
-        ldr     r1, =0x0143     @ MUX, DSE, PE, PS
-        str     r1, [r0]
-
-        @@ Change pin C5 to an output pin using DDR
-        ldr     r0, =0x400FF094 @ GPIOC_PDDR = 400F_F094 (p842)
-        ldr     r1, =0x20
-        str     r1, [r0]
-
+ 
 _startup: 
         @@ Copy data to RAM 
         ldr     r0, =FLASH_DATA_START
@@ -85,10 +68,6 @@ _zero:
                 /* Here control is given to the C-main function. Take note that
                  * no heap is initialized. */
 _end_of_init:   bl   main
-                /* Exit of the C-main function calls the _LED_loop function
-                 * which blinks the LED very fast. Look at it with an
-                 * oscilloscope!*/
-                b    _LED_loop
 
 _halt:  b       _halt
         .end 

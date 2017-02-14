@@ -1,6 +1,5 @@
 /* Linkfile for a AKL26Z64VFT4
- * Robin Isaksson 2016
- * www.rainfoo.com */
+ * Robin Isaksson 2016 */ 
 
 /* MEMORY STRUCTURE
  *  Program flash:   64 KB: 0x0000_0000 -> 0x0000_FFFF 
@@ -12,18 +11,17 @@
  *              SRAM_L should be used for data as it is mapped to
  *              the CODE bus and can access memory in one clock
  *              cycle whereas SRAM is connected to the system bus
- *              where instruction access are delayed on clock cycle.
- *
- *              We however change 0x1FFF_FFFF to 0x2000_0000
- *              and               0x2000_176F to 0x2000_1770
- *              when using the stack since the first address will be
- *              decremented before it is referenced
+ *              where instruction access are delayed on clock cycle.  
  */
 
 MEMORY { 
-    FLASH :      ORIGIN = 0x00000000, LENGTH = 64000
+    FLASH :      ORIGIN = 0x00000000, LENGTH = 64K
+    /* We make SRAM_L and SRAM_H contiguous. If this is unwanted then it can be
+     * modified by separating them and using SRAM_L for fast-read data and
+     * SRAM_U for stack and heap. */
     /*SRAM_L :     ORIGIN = 0x1FFFF830, LENGTH = 2K */
-    SRAM_L :     ORIGIN = 0x1FFFF830, LENGTH = 8000
+    SRAM_L :     ORIGIN = 0x1FFFF830, LENGTH = 8K /* Contiguous memory block */
+
 } 
 
 SECTIONS {

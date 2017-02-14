@@ -15,8 +15,7 @@ OBJS +=$(SRCC:.c=.o)
 
 CFLAGS = -Wall -Wextra -mcpu=cortex-m0plus -mthumb -c -nostdlib -mlong-calls
 AFLAGS = -g -mcpu=cortex-m0plus -mthumb
-LDFLAGS = -g -T $(LDSCRIPT)
-OCPFLAGS_BIN = -O binary -R eeprom
+LDFLAGS = -g -T $(LDSCRIPT) 
 OCPFLAGS_HEX = -O ihex
 
 default: $(TARGET).hex
@@ -32,9 +31,6 @@ $(TARGET).elf: $(OBJS) $(LDSCRIPT)
 
 $(TARGET).hex: $(TARGET).elf
 	$(OCP) $(OCPFLAGS_HEX) $< $@
-
-%.bin: %.elf
-	$(OCP) $(OCPFLAGS_BIN) $< $@
 
 clean:
 	rm -f ./*.o ./*.elf ./*.bin ./*.syms ./*.hex

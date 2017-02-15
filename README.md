@@ -1,11 +1,13 @@
 # Teensy-LC-from-scratch
-Bare-metal programming of the Teensy-LC. A basic skeleton is put in place such
-that a C environment is available.
+Bare-metal programming of the Teensy-LC. 
 
-This is a simple foundation for progamming the Teensy-LC without the Arduino
-environment. All that is included is a simple assembler program which sets up
-the Teensy-LC such that a main function can be programmed in C as well as a
-pre-programmed main function which blinks the Teensy-LC LED.
+You can find a simple program which sets up the Teensy-LC to be programmed in C
+with minimal configuration. A sample which blinks the built-in LED is included.
+
+If you want a more functional environment you can look at the example which
+include most of the CMSIS functionality. There the sample includes a program
+with a 48 MHz system clock put in place which blinks the built-in LED once every
+second using interrupts from the low power timer.
 
 The makefile might have to be modified in a non-Linux environment.
 

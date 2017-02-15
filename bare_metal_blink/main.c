@@ -1,6 +1,6 @@
 #include <stdint.h>
 /* These are the adresses for the registers we need to access in order to
- * control the Teensy built-in LED. You can seach thes variable names in the
+ * control the Teensy built-in LED. You can search these variable names in the
  * manual to find information pertaining to them. */
 uint32_t *SIM_SCGC5  = (uint32_t *)0x40048038;
 uint32_t *PORTC_PCR5 = (uint32_t *)0x4004B014;
